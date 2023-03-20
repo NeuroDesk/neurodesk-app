@@ -317,13 +317,13 @@ export class WelcomeView {
                   <div class="row action-row new-notebook-action-row">
                     <a id="new-notebook-link" href="javascript:void(0)" title="Create new notebook in the default working directory" onclick="handleNewSessionClick('notebook');">
                       <span class="action-icon">${notebookIcon}</span>
-                      New notebook...
+                      Neurodesk session in current window...
                     </a>
                   </div>
                   <div class="row action-row new-session-action-row">
                     <a id="new-session-link" href="javascript:void(0)" title="Launch new JupyterLab session in the default working directory" onclick="handleNewSessionClick('blank');">
                       <span class="action-icon">${labIcon}</span>
-                      New session...
+                      Neurodesk session in new window...
                     </a>
                   </div>
                   ${

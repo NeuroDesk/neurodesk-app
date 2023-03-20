@@ -520,7 +520,7 @@ export class JupyterApplication implements IApplication, IDisposable {
     );
 
     this._evm.registerEventHandler(EventTypeMain.LaunchAboutJupyterPage, () => {
-      shell.openExternal('https://jupyter.org/about.html');
+      shell.openExternal('https://neurodesk.org/');
     });
 
     this._evm.registerEventHandler(

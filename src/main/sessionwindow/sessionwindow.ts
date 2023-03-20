@@ -1014,6 +1014,18 @@ export class SessionWindow implements IDisposable {
     this._remoteServerSelectDialog.load();
 
     this._registry.getRunningServerList().then(runningServers => {
+      runningServers.push(
+        'https://play-sydney.neurodesk.org/v2/gh/neurodesk/jupyter-neurodesktop-image/main'
+      );
+      runningServers.push(
+        'https://play-phoenix.neurodesk.org/v2/gh/neurodesk/jupyter-neurodesktop-image/main'
+      );
+      runningServers.push(
+        'https://play-frankfurt.neurodesk.org/v2/gh/neurodesk/jupyter-neurodesktop-image/main'
+      );
+      runningServers.push(
+        'https://play-ashburn.neurodesk.org/v2/gh/neurodesk/jupyter-neurodesktop-image/main'
+      );
       this._remoteServerSelectDialog.setRunningServerList(runningServers);
     });
   }
