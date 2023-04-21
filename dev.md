@@ -23,7 +23,7 @@ JupyterLab Desktop bundles JupyterLab front-end and a conda environment as Jupyt
 - Get the project source code
 
   ```bash
-  git clone https://github.com/jupyterlab/jupyterlab-desktop.git
+  git clone https://github.com/NeuroDesk/neurodesk-desktop
   ```
 
 - Install dependencies and build JupyterLab Desktop
@@ -39,8 +39,6 @@ JupyterLab Desktop bundles JupyterLab front-end and a conda environment as Jupyt
   yarn start
   ```
 
-  If JupyterLab Desktop does not find a compatible Python environment configured, it will prompt for installation using JupyterLab Desktop Server installer or let you choose a custom environment on your computer at first launch.
-
 ## Building for distribution
 
 - Build the application
@@ -55,8 +53,16 @@ JupyterLab Desktop bundles JupyterLab front-end and a conda environment as Jupyt
   yarn dist:<platform>
   ```
 
-  Application Installer will be created in `dist/JupyterLab.dmg` (macOS), `dist/JupyterLab.deb` (Debian, Ubuntu), `dist/JupyterLab.rpm` (Red Hat, Fedora) and `dist/JupyterLab-Setup.exe` (Windows) based on the platform
+  Application Installer will be created in `dist/Neurodesktop.dmg` (macOS), `dist/JupyterLab.deb` (Debian, Ubuntu), `dist/Neurodesktop.rpm` (Red Hat, Fedora) and `dist/Neurodesktop-Setup.exe` (Windows) based on the platform
 
 ## Release Instructions
 
 For instructions on updating bundled JupyterLab packages and cutting a new release, please follow [Release.md](Release.md) document.
+
+## Neurodesk
+
+The client pull Jupyter Neurodesk image with `jupyter_neurodesk_version` tag in neurodesktop.toml.
+
+Image tag is updated on schedule by Github Action with PR.
+
+Update Release version by changing `neurodesk_desktop_release` in neurodesktop.toml.

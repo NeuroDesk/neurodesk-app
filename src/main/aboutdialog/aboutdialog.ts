@@ -5,7 +5,10 @@ import * as ejs from 'ejs';
 import * as path from 'path';
 import * as fs from 'fs';
 import { ThemedWindow } from '../dialog/themedwindow';
-import { app } from 'electron';
+import { Config } from '../utils';
+
+const config = Config.loadConfig(path.join(__dirname, '../..'));
+const release = config.ConfigToml.neurodesk_desktop_release;
 
 export class AboutDialog {
   constructor(options: AboutDialog.IOptions) {
@@ -93,7 +96,7 @@ export class AboutDialog {
       </div>
     `;
     this._pageBody = ejs.render(template, {
-      version: app.getVersion(),
+      version: release,
       thisYear: new Date().getFullYear()
     });
   }
