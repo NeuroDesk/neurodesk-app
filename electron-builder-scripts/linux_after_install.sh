@@ -1,2 +1,2 @@
-ln -s "/opt/Neurodesktop/resources/app/neurodesktop" /usr/bin/neurodesktop
-chmod 755 "/opt/Neurodesktop/resources/app/neurodesktop"
+ln -s "/opt/NeurodeskApp/resources/app/neurodeskapp" /usr/bin/neurodeskapp
+chmod 755 "/opt/NeurodeskApp/resources/app/neurodeskapp"

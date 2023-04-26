@@ -37,7 +37,7 @@ function createShared(packageData) {
   for (let pkg of extensionPackages) {
     if (!shared[pkg]) {
       shared[pkg] = {
-        requiredVersion: require(`${pkg}/package.json`).version
+        requiredVersion: require(`${pkg}/package.json`).jlab_version
       };
     }
   }
@@ -106,7 +106,7 @@ function createShared(packageData) {
   // importing was installed from the file.
   for (let [pkg, { requiredVersion }] of Object.entries(shared)) {
     if (requiredVersion && requiredVersion.startsWith('file:')) {
-      shared[pkg].requiredVersion = require(`${pkg}/package.json`).version;
+      shared[pkg].requiredVersion = require(`${pkg}/package.json`).jlab_version;
     }
   }
 

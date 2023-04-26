@@ -73,7 +73,7 @@ export class AboutDialog {
           </div>
           <div class="app-title-version">
             <div class="app-title">
-              Neurodesk Desktop
+              Neurodesk App
             </div>
             <div class="app-version">
               Version <%= version %>

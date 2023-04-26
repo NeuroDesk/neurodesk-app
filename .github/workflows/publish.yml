@@ -98,7 +98,7 @@ jobs:
         with:
           name: debian-installer
           path: |
-            dist/Neurodesktop.deb
+            dist/NeurodeskApp.deb
 
       - name: Upload Fedora Installer
         if: matrix.cfg.platform == 'linux'
@@ -106,7 +106,7 @@ jobs:
         with:
           name: fedora-installer
           path: |
-            dist/Neurodesktop.rpm
+            dist/NeurodeskApp.rpm
 
       - name: Upload macOS x64 Installer
         if: matrix.cfg.platform == 'mac'
@@ -114,7 +114,7 @@ jobs:
         with:
           name: mac-installer-x64
           path: |
-            dist/Neurodesktop-x64.dmg
+            dist/NeurodeskApp-x64.dmg
 
       - name: Upload macOS arm64 Installer
         if: matrix.cfg.platform == 'mac'
@@ -122,7 +122,7 @@ jobs:
         with:
           name: mac-installer-arm64
           path: |
-            dist/Neurodesktop-arm64.dmg
+            dist/NeurodeskApp-arm64.dmg
 
       - name: Upload Windows Installer
         if: matrix.cfg.platform == 'win'
@@ -130,15 +130,15 @@ jobs:
         with:
           name: windows-installer
           path: |
-            dist/Neurodesktop-Setup.exe
+            dist/NeurodeskApp-Setup.exe
 
       - name: Upload Debian Installer as Release asset
         if: matrix.cfg.platform == 'linux' && steps.release-exists.outputs.result == 'true'
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.JLAB_APP_TOKEN }}
-          file: dist/Neurodesktop.deb
-          asset_name: Neurodesktop-Setup-Debian.deb
+          file: dist/NeurodeskApp.deb
+          asset_name: NeurodeskApp-Setup-Debian.deb
           tag: v${{ steps.package-info.outputs.version}}
           overwrite: true
 
@@ -147,8 +147,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.JLAB_APP_TOKEN }}
-          file: dist/Neurodesktop.rpm
-          asset_name: Neurodesktop-Setup-Fedora.rpm
+          file: dist/NeurodeskApp.rpm
+          asset_name: NeurodeskApp-Setup-Fedora.rpm
           tag: v${{ steps.package-info.outputs.version}}
           overwrite: true
 
@@ -157,8 +157,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.JLAB_APP_TOKEN }}
-          file: dist/Neurodesktop-x64.dmg
-          asset_name: Neurodesktop-Setup-macOS-x64.dmg
+          file: dist/NeurodeskApp-x64.dmg
+          asset_name: NeurodeskApp-Setup-macOS-x64.dmg
           tag: v${{ steps.package-info.outputs.version}}
           overwrite: true
 
@@ -167,8 +167,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.JLAB_APP_TOKEN }}
-          file: dist/Neurodesktop-arm64.dmg
-          asset_name: Neurodesktop-Setup-macOS-arm64.dmg
+          file: dist/NeurodeskApp-arm64.dmg
+          asset_name: NeurodeskApp-Setup-macOS-arm64.dmg
           tag: v${{ steps.package-info.outputs.version}}
           overwrite: true
 
@@ -177,8 +177,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.JLAB_APP_TOKEN }}
-          file: dist/Neurodesktop-x64.zip
-          asset_name: Neurodesktop-macOS-x64.zip
+          file: dist/NeurodeskApp-x64.zip
+          asset_name: NeurodeskApp-macOS-x64.zip
           tag: v${{ steps.package-info.outputs.version}}
           overwrite: true
       
@@ -187,8 +187,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.JLAB_APP_TOKEN }}
-          file: dist/Neurodesktop-arm64.zip
-          asset_name: Neurodesktop-macOS-arm64.zip
+          file: dist/NeurodeskApp-arm64.zip
+          asset_name: NeurodeskApp-macOS-arm64.zip
           tag: v${{ steps.package-info.outputs.version}}
           overwrite: true
 
@@ -197,8 +197,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.JLAB_APP_TOKEN }}
-          file: dist/Neurodesktop-Setup.exe
-          asset_name: Neurodesktop-Setup-Windows.exe
+          file: dist/NeurodeskApp-Setup.exe
+          asset_name: NeurodeskApp-Setup-Windows.exe
           tag: v${{ steps.package-info.outputs.version}}
           overwrite: true
 

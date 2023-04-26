@@ -262,8 +262,7 @@ export class SettingsDialog {
                   window.electronAPI.clearHistory({
                     sessionData: clearSessionDataCheckbox.checked,
                     recentRemoteURLs: clearRecentRemoteURLs.checked,
-                    recentSessions: clearRecentSessions.checked,
-                    userSetPythonEnvs: clearUserSetPythonEnvs.checked,
+                    recentSessions: clearRecentSessions.checked
                   }).then(() => {
                     clearHistoryProgress.style.visibility = 'hidden';
                   });

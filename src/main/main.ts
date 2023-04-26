@@ -2,12 +2,17 @@ import { app, Menu, MenuItem } from 'electron';
 import log, { LevelOption } from 'electron-log';
 import yargs from 'yargs/yargs';
 import * as fs from 'fs';
+import * as path from 'path';
 import { getAppDir, isDevMode, waitForFunction } from './utils';
 import { execSync } from 'child_process';
 import { JupyterApplication } from './app';
 import { ICLIArguments } from './tokens';
 import { SessionConfig } from './config/sessionconfig';
 import { SettingType, userSettings } from './config/settings';
+import { Config } from './utils';
+
+const config = Config.loadConfig(path.join(__dirname, '..'));
+const release = config.ConfigToml.neurodesk_desktop_release;
 
 let jupyterApp: JupyterApplication;
 let fileToOpenInMainInstance = '';
@@ -32,16 +37,16 @@ require('fix-path')();
 
 function parseArgs(argv: string[]) {
   return yargs(argv)
-    .usage('neurodesktop [options] folder/file paths')
-    .example('neurodesktop', 'Launch in default working directory')
-    .example('neurodesktop .', 'Launch in current directory')
+    .usage('neurodeskapp [options] folder/file paths')
+    .example('neurodeskapp', 'Launch in default working directory')
+    .example('neurodeskapp .', 'Launch in current directory')
     .example(
-      'neurodesktop /data/nb/test.ipynb',
+      'neurodeskapp /data/nb/test.ipynb',
       'Launch in /data/nb and open test.ipynb'
     )
-    .example('neurodesktop /data/nb', 'Launch in /data/nb')
+    .example('neurodeskapp /data/nb', 'Launch in /data/nb')
     .example(
-      'neurodesktop --working-dir /data/nb test.ipynb sub/test2.ipynb',
+      'neurodeskapp --working-dir /data/nb test.ipynb sub/test2.ipynb',
       'Launch in /data/nb and open /data/nb/test.ipynb and /data/nb/sub/test2.ipynb'
     )
     .option('python-path', {
@@ -107,9 +112,9 @@ console.debug = log.debug;
 const thisYear = new Date().getFullYear();
 
 app.setAboutPanelOptions({
-  applicationName: 'Neurodesk Desktop',
-  applicationVersion: app.getVersion(),
-  version: app.getVersion(),
+  applicationName: 'Neurodesk App',
+  applicationVersion: release,
+  version: release,
   website: 'https://www.neurodesk.org/',
   copyright: `© MIT License ${thisYear}`
 });
@@ -146,8 +151,8 @@ function setupJLabCommand() {
     return;
   }
 
-  const symlinkPath = '/usr/local/bin/neurodesktop';
-  const targetPath = `${getAppDir()}/app/neurodesktop`;
+  const symlinkPath = '/usr/local/bin/neurodeskapp';
+  const targetPath = `${getAppDir()}/app/neurodeskapp`;
 
   if (!fs.existsSync(targetPath)) {
     return;

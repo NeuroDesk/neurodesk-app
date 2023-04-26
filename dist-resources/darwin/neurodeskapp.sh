@@ -14,7 +14,7 @@ real_path() (
 # calculate application path from this script's path
 SELF_DIR=$(dirname "$(real_path "$0")")
 APP_CONTENTS_DIR=$(dirname "$(dirname "$SELF_DIR")")
-JLAB_PATH="$APP_CONTENTS_DIR"/MacOS/Neurodesktop
+JLAB_PATH="$APP_CONTENTS_DIR"/MacOS/NeurodeskApp
 
 $JLAB_PATH "$@"
 exit $?
