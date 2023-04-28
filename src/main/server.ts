@@ -58,10 +58,14 @@ function createLaunchScript(
   // be followed by equals sign without a space; this can be
   // removed once jupyter_server requires traitlets>5.0
   const launchArgs = [
-    'docker run -d --shm-size=1gb -it --privileged --user=root --name neurodesktop -v ~/neurodesktop-storage:/neurodesktop-storage -p 8888:8888'
+    'docker run -d --shm-size=1gb -it --privileged --user=root --name neurodesktop -p 8888:8888'
   ];
   launchArgs.push(
-    `${isWin ? '' : '-e NB_UID="$(id -u)" -e NB_GID="$(id -g)"'}`
+    `${
+      isWin
+        ? '-v C:/neurodesktop-storage:/neurodesktop-storage'
+        : '-e NB_UID="$(id -u)" -e NB_GID="$(id -g)" -v ~/neurodesktop-storage:/neurodesktop-storage'
+    }`
   );
 
   const config = Config.loadConfig(path.join(__dirname, '..'));
