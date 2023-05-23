@@ -1,6 +1,5 @@
 version = "20221216"
-jupyter_neurodesk_version = "20230515"
-neurodesk_desktop_release = "0.1.0"
+jupyter_neurodesk_version = "20230415"
 
 rdpport="-p 3390:3389"
 vncport="-p 5901:5901"
