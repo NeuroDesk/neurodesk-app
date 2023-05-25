@@ -59,8 +59,15 @@ export enum SettingType {
 }
 
 export const serverLaunchArgsFixed = [
-  '-h neurodesktop-dev vnmd/neurodesktop:{tag}',
+  '-h neurodesktop vnmd/neurodesktop:{tag}'
   // // use our token rather than any pre-configured password
+];
+
+export const serverLaunchArgsDefault = [
+  //   // do not use any config file
+  //   '--JupyterApp.config_file_name=""',
+  //   // enable hidden files (let user decide whether to display them)
+  //   '--ContentsManager.allow_hidden=True'
   'start.sh jupyter lab --ServerApp.password=""',
   '--no-browser',
   '--expose-app-in-browser',
@@ -68,13 +75,6 @@ export const serverLaunchArgsFixed = [
   `--ServerApp.port=8888`,
   '--LabApp.quit_button=False'
 ];
-
-// export const serverLaunchArgsDefault = [
-//   // do not use any config file
-//   '--JupyterApp.config_file_name=""',
-//   // enable hidden files (let user decide whether to display them)
-//   '--ContentsManager.allow_hidden=True'
-// ];
 
 export class Setting<T> {
   constructor(defaultValue: T, options?: Setting.IOptions) {

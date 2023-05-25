@@ -835,11 +835,11 @@ export class JupyterApplication implements IApplication, IDisposable {
 
     this._evm.registerEventHandler(
       EventTypeMain.SetServerLaunchArgs,
-      (_event, serverArgs: string, overrideDefaultServerArgs: boolean) => {
+      (_event, serverArgs: string, overrideDefaultServerArgs?: boolean) => {
         userSettings.setValue(SettingType.serverArgs, serverArgs || '');
         userSettings.setValue(
           SettingType.overrideDefaultServerArgs,
-          overrideDefaultServerArgs
+          overrideDefaultServerArgs || false
         );
       }
     );
