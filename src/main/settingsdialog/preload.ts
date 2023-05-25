@@ -89,12 +89,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
   },
   setServerLaunchArgs: (
     serverArgs: string,
-    overrideDefaultServerArgs?: boolean
+    overrideDefaultServerArgs: boolean
   ) => {
     ipcRenderer.send(
       EventTypeMain.SetServerLaunchArgs,
       serverArgs,
-      overrideDefaultServerArgs || false
+      overrideDefaultServerArgs
     );
   },
   setServerEnvVars: (serverEnvVars: any) => {

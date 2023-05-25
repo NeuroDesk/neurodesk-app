@@ -54,15 +54,10 @@ Previously opened sessions are stored as part of application data and they are l
 
 <img src="media/recent-sessions.svg" alt="Start session" width=300 />
 
-### Add Custom Data Directory
+### neurodeskapp command-line launch examples
 
-Neurodesk App stores its data in the following locations:
-
-- By default, /home/jovyan/neurodesktop-storage in the app (which is binded with local directory ~/neurodesktop-storage in Unix or C:/neurodesktop-storage in Windows)
-
-- By choice, in the setting window below, select `Additional Directory` on the left side bar, click `Change` button to select the local directory, then click `Apply & restart`. The next time you start the app, the data from the local directory can be found in /home/jovyan/data.
-
-<img src="media/additional_dir.png" alt="Add data" width=220 />
+- Open directories using relative or absolute path
+  - `neurodeskapp .` launch in current directory
 
 ### See [user guide](user-guide.md) for configuration options
 

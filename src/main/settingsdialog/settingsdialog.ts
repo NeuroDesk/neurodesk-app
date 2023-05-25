@@ -201,7 +201,7 @@ export class SettingsDialog {
         <div id="content-area">
           <jp-tabs id="category-tabs" false="" orientation="vertical">
             <jp-tab id="tab-general">General</jp-tab>
-            <jp-tab id="tab-server">Additional Directory</jp-tab>
+            <jp-tab id="tab-server">Server</jp-tab>
             <jp-tab id="tab-privacy">Privacy</jp-tab>
             <jp-tab id="tab-advanced">Advanced</jp-tab>
 
@@ -220,9 +220,13 @@ export class SettingsDialog {
 
             </jp-tab-panel>
 
+
+
+
+
             <jp-tab-panel id="tab-panel-server">
               <div class="row" style="line-height: 30px;">
-                <label>Additional working directory</label>
+                <label>Default working directory</label>
               </div>
               <div class="row">
                 <div style="flex-grow: 1;">
@@ -232,16 +236,6 @@ export class SettingsDialog {
                   <jp-button id='select-working-directory' onclick='handleSelectWorkingDirectory(this);'>Change</jp-button>
                 </div>
               </div>
-
-              <script>
-                const workingDirectoryInput = document.getElementById('working-directory');
-                window.electronAPI.onWorkingDirectorySelected((path) => {
-                  workingDirectoryInput.value = path;
-                });
-                function handleSelectWorkingDirectory(el) {
-                  window.electronAPI.selectWorkingDirectory();
-                }
-              </script>
             </jp-tab-panel>
 
             <jp-tab-panel id="tab-panel-privacy">
@@ -376,8 +370,9 @@ export class SettingsDialog {
 
           window.electronAPI.setCheckForUpdatesAutomatically(autoUpdateCheckCheckbox.checked);
           window.electronAPI.setInstallUpdatesAutomatically(autoInstallCheckbox.checked);
-          window.electronAPI.setDefaultWorkingDirectory(workingDirectoryInput.value);
-          window.electronAPI.setServerLaunchArgs(workingDirectoryInput.value + ':/data');
+
+
+
 
           const ctrlWBehavior = document.querySelector('jp-radio[name="ctrl-w-behavior"].checked').value;
           window.electronAPI.setCtrlWBehavior(ctrlWBehavior);

@@ -19,7 +19,7 @@ import {
 } from './utils';
 import {
   KeyValueMap,
-  serverLaunchArgsDefault,
+  // serverLaunchArgsDefault,
   serverLaunchArgsFixed,
   SettingType,
   userSettings,
@@ -70,22 +70,25 @@ function createLaunchScript(
   const config = Config.loadConfig(path.join(__dirname, '..'));
   const tag = config.ConfigToml.jupyter_neurodesk_version;
 
-  if (serverInfo.serverArgs) {
-    launchArgs.push(` -v ${serverInfo.serverArgs.replace(/\\/g, '/')}`);
-  }
-
   for (const arg of serverLaunchArgsFixed) {
-    launchArgs.push(arg.replace('{tag}', tag));
+    launchArgs.push(
+      arg.replace('{tag}', tag).replace('{tag}', tag).replace('{token}', token)
+    );
     console.debug(`!!! launchArgs ${launchArgs}`);
   }
 
-  if (!serverInfo.overrideDefaultServerArgs) {
-    for (const arg of serverLaunchArgsDefault) {
-      launchArgs.push(arg.replace('{token}', token));
-    }
-  }
+  // if (!serverInfo.overrideDefaultServerArgs) {
+  //   for (const arg of serverLaunchArgsDefault) {
+  //     launchArgs.push(arg);
+  //   }
+  // }
 
   let launchCmd = launchArgs.join(' ');
+
+  if (serverInfo.serverArgs) {
+    launchCmd += ` ${serverInfo.serverArgs}`;
+  }
+
   let script: string;
 
   if (isWin) {
