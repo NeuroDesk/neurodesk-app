@@ -58,7 +58,7 @@ function createLaunchScript(
   // be followed by equals sign without a space; this can be
   // removed once jupyter_server requires traitlets>5.0
   const launchArgs = [
-    `docker volume create neurodesk-home && docker run -d --shm-size=1gb -it --privileged --user=root --name neurodeskapp -p ${strPort}:${strPort} --mount source=neurodesk-home,target=/home/jovyan`
+    `docker volume create neurodesk-home && docker run -d --shm-size=1gb -it --privileged --user=root --name neurodeskapp-${strPort} -p ${strPort}:${strPort} --mount source=neurodesk-home,target=/home/jovyan`
   ];
   launchArgs.push(
     `${
@@ -97,12 +97,12 @@ function createLaunchScript(
         FOR /F "usebackq delims=" %%i IN (\`docker image inspect vnmd/neurodesktop:${tag} --format="exists" 2^>nul\`) DO SET IMAGE_EXISTS=%%i
         if "%IMAGE_EXISTS%"=="exists" (
             echo "Image exists"
-            FOR /F "usebackq delims=" %%i IN (\`docker container inspect -f "{{.State.Status}}" neurodeskapp\`) DO SET CONTAINER_STATUS=%%i
-              docker stop neurodeskapp && docker rm neurodeskapp 
+            FOR /F "usebackq delims=" %%i IN (\`docker container inspect -f "{{.State.Status}}" neurodeskapp-${strPort}\`) DO SET CONTAINER_STATUS=%%i
+              docker stop neurodeskapp-${strPort} && docker rm neurodeskapp-${strPort} 
               ${launchCmd}
         ) else (
             echo "Image does not exist"
-            docker stop neurodeskapp && docker rm neurodeskapp 
+            docker stop neurodeskapp-${strPort} && docker rm neurodeskapp-${strPort} 
             docker pull vnmd/neurodesktop:${tag}
             ${launchCmd}
         )
@@ -110,10 +110,10 @@ function createLaunchScript(
   } else {
     script = `
         if [[ "$(docker image inspect vnmd/neurodesktop:${tag} --format='exists' 2> /dev/null)" == "exists" ]]; then 
-              docker stop neurodeskapp && docker rm neurodeskapp 
+              docker stop neurodeskapp-${strPort} && docker rm neurodeskapp-${strPort} 
               ${launchCmd}
         else
-          docker stop neurodeskapp && docker rm neurodeskapp 
+          docker stop neurodeskapp-${strPort} && docker rm neurodeskapp-${strPort} 
           docker pull vnmd/neurodesktop:${tag}
           ${launchCmd}
         fi

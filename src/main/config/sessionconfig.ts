@@ -18,7 +18,7 @@ export class SessionConfig {
   width: number = DEFAULT_WIN_WIDTH;
   height: number = DEFAULT_WIN_HEIGHT;
   remoteURL: string = '';
-  persistSessionData: boolean = true;
+  persistSessionData: boolean = false;
   partition: string = '';
   workingDirectory: string = '';
   filesToOpen: string[] = [];
