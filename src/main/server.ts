@@ -28,7 +28,7 @@ import {
 } from './config/settings';
 import { randomBytes } from 'crypto';
 
-const SERVER_LAUNCH_TIMEOUT = 20000; // milliseconds
+const SERVER_LAUNCH_TIMEOUT = 40000; // milliseconds
 const SERVER_RESTART_LIMIT = 1; // max server restarts
 
 function createTempFile(
@@ -76,7 +76,7 @@ function createLaunchScript(
   let volumeCreate = `${isPodman ? `${engineType} volume exists neurodesk-home &> /dev/null || ${engineType} volume create neurodesk-home` : ''}`
   
   let launchArgs = [
-    `${engineType} run --log-level=trace -d --shm-size=1gb -it --privileged --user=root --name neurodeskapp-${strPort} -p ${strPort}:${strPort} ` + `${isPodman ? '-v neurodesk-home:/home/jovyan -v /cvmfs/neurodesk.ardc.edu.au:/cvmfs/neurodesk.ardc.edu.au:ro' : '--mount source=neurodesk-home,target=/home/jovyan'}`
+    `${engineType} run --log-level=trace -d --shm-size=1gb -it --privileged --user=root --name neurodeskapp-${strPort} -p ${strPort}:${strPort} ` + `${isPodman ? '-v neurodesk-home:/home/jovyan' : '--mount source=neurodesk-home,target=/home/jovyan'}`
   ];
   launchArgs.push(
     `${
