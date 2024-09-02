@@ -251,7 +251,7 @@ export class LabView implements IDisposable {
         return Promise.resolve();
       }
     } else {
-      return Promise.resolve();
+      return clearSession(this._view.webContents.session);
     }
   }
 
